@@ -16,7 +16,7 @@ export default function Checkerboard() {
       let row = [];
 
       for (var j = 0; j < num; j++) {
-        row.push(0);
+        row.push(undefined);
       }
       newBoard.push(row);
     }
@@ -34,18 +34,44 @@ export default function Checkerboard() {
         {board.map((row, rowIdx) => 
           <div>
             {row.map((col, colIdx) => {
-              if ((rowIdx + colIdx) % 2 === 0) {
-                return (
-                  <div className={`${styles.checker} ${styles.checkerEven}`}>
-                    {col} 
-                  </div>
-                )
+              // if ((rowIdx + colIdx) % 2 === 0) {
+              //   return (
+              //     <div className={`${styles.checker} ${styles.checkerEven}`}>
+              //       {col} 
+              //     </div>
+              //   )
+              // } else {
+              //   return (
+              //     <div className={`${styles.checker} ${styles.checkerOdd}`}>
+              //       {col} 
+              //     </div>
+              //   )
+              // }
+
+              /**
+                TASK 2: attempts to apply color for top two and color for bottom two
+              
+               */
+              if (rowIdx < 2) {
+                <div className={`
+                  ${styles.checker}
+                  ${styles.topTwo} 
+                  ${(rowIdx + colIdx) % 2 === 0 ? styles.checkerEven : styles.checkerOdd}`}>
+                  O
+                </div>
+              } else if (rowIdx >= 2 && rowIdx <= board.length - 2) {
+                <div className={`
+                  ${styles.checker} 
+                  ${(rowIdx + colIdx) % 2 === 0 ? styles.checkerEven : styles.checkerOdd}`}>
+                  {col}
+                </div>
               } else {
-                return (
-                  <div className={`${styles.checker} ${styles.checkerOdd}`}>
-                    {col} 
-                  </div>
-                )
+                <div className={`
+                  ${styles.checker} 
+                  ${styles.bottomTwo} 
+                  ${(rowIdx + colIdx) % 2 === 0 ? styles.checkerEven : styles.checkerOdd}`}>
+                  O
+                </div>
               }
             }
             )}
