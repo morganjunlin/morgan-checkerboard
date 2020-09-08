@@ -1,47 +1,38 @@
-import P from '../components/paragraph'
-import Post from '../components/post'
+import React, { useState, useEffect } from 'react';
+import styles from '../components/checkerboard.module.css';
 
-export default function Home() {
+
+export default function Checkerboard() {
+  const [board, setBoard] = useState([]);
+  const [value, setValue] = useState(0);
+
+  const handleChange = (e) => {
+    setValue(Number(e.target.value));
+  }
+
+  const initBoard = (num) => {
+    let newBoard = [];
+    for (var i = 0; i < num; i++) {
+      let row = [];
+
+      for (var j = 0; j < num; j++) {
+        row.push(0);
+      }
+      newBoard.push(row);
+    }
+    setBoard(newBoard);
+  };
+
+  useEffect(() => {
+    initBoard(value);
+  }, [value])
+
   return (
-    <div className="main">
-      <Post title="My first blog post">
-        <P>Hello there</P>
-        <P>This is an example of a componentized blog post</P>
-      </Post>
-
-      <hr />
-
-      <Post title="My second blog post">
-        <P>Hello there</P>
-        <P>This is another example.</P>
-        <P>Wa-hoo!</P>
-      </Post>
-
-      <hr />
-
-      <Post title="The final blog post">
-        <P>C’est fin</P>
-      </Post>
-
-      <style jsx>{`
-        .main {
-          margin: auto;
-          max-width: 420px;
-          padding: 10px;
-        }
-
-        hr {
-          width: 100px;
-          border-width: 0;
-          margin: 20px auto;
-          text-align: center;
-        }
-
-        hr::before {
-          content: '***';
-          color: #ccc;
-        }
-      `}</style>
+    <div className={styles.main}>
+      Please enter a number value: <input type='number' min='0' max='9' onChange={handleChange} value={value} />
+      <div className={styles.board}>
+        {board.map(el => <div>{el} <br /></div>)}
+      </div>
     </div>
   )
-}
+};
