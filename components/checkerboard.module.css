@@ -3,18 +3,19 @@
 }
 
 .board {
-  margin-top: 150px;
-  /* color: transparent; */
+  margin-top: 50px;
+  color: transparent;
 }
 
 .checker {
+  display: inline-block;
   padding: 50px;
 }
 
 .checkerOdd {
-  background-color: black;
+  background-color: #3f3f3f;
 }
 
 .checkerEven {
-  background-color: grey;
+  background-color: #CCCCCC;
 }

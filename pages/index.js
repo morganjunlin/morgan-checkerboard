@@ -36,11 +36,15 @@ export default function Checkerboard() {
             {row.map((col, colIdx) => {
               if ((rowIdx + colIdx) % 2 === 0) {
                 return (
-                  <span className={`${styles.checker} ${styles.checkerEven}`}>{col} </span>
+                  <div className={`${styles.checker} ${styles.checkerEven}`}>
+                    {col} 
+                  </div>
                 )
               } else {
                 return (
-                  <span className={`${styles.checker} ${styles.checkerOdd}`}>{col} </span>
+                  <div className={`${styles.checker} ${styles.checkerOdd}`}>
+                    {col} 
+                  </div>
                 )
               }
             }
