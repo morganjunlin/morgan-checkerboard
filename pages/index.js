@@ -31,7 +31,22 @@ export default function Checkerboard() {
     <div className={styles.main}>
       Please enter a number value: <input type='number' min='0' max='9' onChange={handleChange} value={value} />
       <div className={styles.board}>
-        {board.map(el => <div>{el} <br /></div>)}
+        {board.map((row, rowIdx) => 
+          <div>
+            {row.map((col, colIdx) => {
+              if ((rowIdx + colIdx) % 2 === 0) {
+                return (
+                  <span className={`${styles.checker} ${styles.checkerEven}`}>{col} </span>
+                )
+              } else {
+                return (
+                  <span className={`${styles.checker} ${styles.checkerOdd}`}>{col} </span>
+                )
+              }
+            }
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
